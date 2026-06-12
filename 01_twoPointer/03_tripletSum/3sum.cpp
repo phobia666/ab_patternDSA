@@ -3,10 +3,20 @@ using namespace std;
 
 void threeSum(vector<int> a, int len){
     vector<vector<int>> ans;
-    int left = 1; 
-    int right = len - 1;
+    sort(a.begin(), a.end());
+    int elem = a[0];
 
     for(int i = 0; i < len - 2; i++){
+        int left = i + 1;
+        int right = len - 1;
+        if(i > 0) {
+            
+            if(elem == a[i]){
+                continue;
+            }
+            
+        }
+
         while(left < right){
             if(a[left] + a[right] == -a[i]){
                 ans.push_back({a[i], a[left], a[right]});
@@ -33,7 +43,8 @@ void threeSum(vector<int> a, int len){
 }
 
 int main(){
-    vector<int> a = {-1, -1, 0, 1, 2, 4};
+    vector<int> a = {-1,0,1,2,-1,-4};
+
     int len = a.size();
     threeSum(a, len);
 }

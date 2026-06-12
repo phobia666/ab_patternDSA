@@ -7,17 +7,18 @@ int threeSum(vector<int> a, int target){
     int closeSum = 0;
     int diff = INT_MAX;
     int len = a.size();
-    int right = len - 1;
-    int left = 0;
     int sum = 0;
+    sort(a.begin(), a.end());
     int elem = a[0];
 
     for(int i = 0; i < len - 2; i++){
         if(i > 0){
             if(elem == a[i]) continue;
+            elem = a[i];
         }
-        left = i + 1;
-        
+        int right = len - 1;
+        int left = i + 1;
+
         while(left < right){
             sum = a[left] + a[right];
             if(sum == target - a[i]){
@@ -35,9 +36,7 @@ int threeSum(vector<int> a, int target){
             }
         }
     }
-
     return closeSum;
-
 }
 
 int main() {
