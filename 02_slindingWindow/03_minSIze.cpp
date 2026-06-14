@@ -9,23 +9,13 @@ int slide(vector<int>& a, int target){
     int sum = 0;
     int k = 0;
     int res = INT_MAX;
+    bool cond = false;
 
     while(high < n){
-        // if(sum < target){
-        //     sum += a[high];
-        //     high++;
-        // }
-        // else if(sum >= target){
-        //     sum -= a[low];
-        //     k = high - low;
-        //     res = min(res, k);
-        //     low++;
-
-        // }
-
         sum += a[high];
 
         while(sum >= target){
+            cond = true;
             k = high - low + 1;
             res = min(res, k);
             sum -= a[low];
@@ -35,11 +25,14 @@ int slide(vector<int>& a, int target){
         high++;
 
     }
+    if(!cond){
+        return 0;
+    }
     return res;
 }
 
 int main() {
-    vector<int> a = {1, 0, 3, 5, 2, 1, 4};
+    vector<int> a = {1, 0, 3, 5, 2, 1, 10};
     int target = 10;
 
     cout << slide(a, target);
